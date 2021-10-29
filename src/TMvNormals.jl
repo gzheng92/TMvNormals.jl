@@ -66,12 +66,12 @@ function TMvNormal(𝒩::MvNormal, a::AbstractVector, b::AbstractVector)
     a = ifelse.(
         isfinite.(a),
         a,
-        μ - 10 * sqrt.(diag(Σ))
+        μ - 10 * sqrt.(diag(𝒩.Σ))
     )
     b = ifelse.(
         isfinite.(b),
         b,
-        μ + 10 * sqrt.(diag(Σ))
+        μ + 10 * sqrt.(diag(𝒩.Σ))
     )
     return TMvNormal(
         𝒩.μ, 𝒩.Σ, a, b, 𝒩,
