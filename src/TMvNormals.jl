@@ -169,7 +169,7 @@ function pdf(d::TMvNormal, x::Number, dim::Number=1)
 end
 
 """
-Calculate the marginal univariate density of a truncated multivariate normal.
+Calculate the marginal bivariate density of a truncated multivariate normal.
 Formula taken from Manjunath Wilhelm (2021)
 https://doi.org/10.35566/JBDS%2FV1N1%2FP2
 """
