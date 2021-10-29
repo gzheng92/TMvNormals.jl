@@ -1,4 +1,4 @@
-# Mvtnormal.jl
+# TMvNormals.jl
 Implements a truncated multivariate normal distribution.
 
 Draws heavily on formulas from Manjunath Wilhem (2021)
