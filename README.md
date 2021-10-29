@@ -1,5 +1,7 @@
 # Mvtnormal.jl
-Implements a truncated multivariate normal distribution
+Implements a truncated multivariate normal distribution.
+
+Draws heavily on formulas from Manjunath Wilhem (2021)
 
 ## Usage
 
@@ -38,3 +40,7 @@ cov(d)
 # the latent untruncated normal is contained in d.𝒩
 cdf(𝒩, zeros(3))
 ```
+
+## References
+
+Manjunath, B. G. and Stefan Wilhelm. “Moments Calculation for the Doubly Truncated Multivariate Normal Density.” (2021).
