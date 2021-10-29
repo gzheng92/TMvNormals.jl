@@ -1,5 +1,8 @@
 using Distributions, PDMats, Primes, Random, LinearAlgebra
-
+"""
+Modified from
+https://discourse.julialang.org/t/mvn-cdf-have-it-coded-need-help-getting-integrating-into-distributions-jl/38631
+"""
 function qsimvnv(Σ::AbstractMatrix, a, b;m=nothing)
     #= rev 1.13
     
