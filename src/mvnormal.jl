@@ -80,7 +80,7 @@ function qsimvnv(Σ::AbstractMatrix, a, b;m=nothing)
     all(a .<= b) || throw(ArgumentError("lower integration limit a must be <= upper integration limit b"))
     
     # check that Σ is positive definate; if not, print warning
-    isa(Σ, PDMat) || isposdef(Σ) || @warn "covariance matrix Σ fails positive definite check"
+    isa(Σ, AbstractPDMat) || isposdef(Σ) || @warn "covariance matrix Σ fails positive definite check"
     
     # check if Σ, a, or b contains NaNs
     if any(isnan.(Σ)) || any(isnan.(a)) || any(isnan.(b))
