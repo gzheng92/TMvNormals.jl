@@ -127,6 +127,13 @@ function cdf(𝒩::MvNormal, a::AbstractVector, b::AbstractVector)
     end
 end
 
+"""
+Calculate the cdf of a MVN with no lower bounds
+"""
+function cdf(𝒩::MvNormal, b::AbstractVector)
+    a = fill(-Inf, size(b))
+    return cdf(𝒩, a, b)
+end
 function pdf(d::TMvNormal, x::AbstractVector)
     @unpack a, b, α, 𝒩 = d
     if all(a .<= x .<= b)
