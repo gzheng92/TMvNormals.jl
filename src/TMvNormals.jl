@@ -350,5 +350,5 @@ function test_moments()
     end
 end
 
-export TMvNormal, cov2cor, mean, cov, pdf, cdf
+export TMvNormal, cov2cor, mean, cov, pdf, cdf, rand
 end
