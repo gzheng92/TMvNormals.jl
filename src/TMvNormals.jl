@@ -231,6 +231,9 @@ function pdf(d::TMvNormal, x::AbstractVector, margin::AbstractVector)
     
     if K - 2 > 0
         Φᵈ⁻² = cdf(MvNormal(zeros(K - 2), R₂), A.(q, r, idx), B.(q, r, idx))
+        display(A.(q, r, idx))
+        display(B.(q, r, idx))
+        display(R₂)
     else
         Φᵈ⁻² = 1
     end
