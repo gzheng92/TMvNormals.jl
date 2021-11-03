@@ -59,6 +59,11 @@ function TMvNormal(μ::AbstractVector, Σ::AbstractMatrix, a::AbstractVector, b:
 )
 end
 
+function TMvNormal(μ::AbstractVector{Float64}, Σ::AbstractMatrix, vecs::Vararg{AbstractVector,N}) where {N}
+    @assert length(μ) == length(vecs)
+    return TMvNormal(μ, Σ, map(first, vecs), map(last, vecs))
+end
+
 """
 More convenient way to initialize the distribution with 𝒩, a, and b
 """
