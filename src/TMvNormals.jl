@@ -61,18 +61,19 @@ end
 
 function TMvNormal(μ::AbstractVector{Float64}, Σ::AbstractMatrix, vecs::Vararg{AbstractVector})
     if length(μ) == length(vecs)
+        # Case 1: Sequence of lower, upper bounds
         return _TMvNormal_ab(μ, Σ, vecs[1], vecs[2])
     elseif length(vecs) == 2
         if all(map(issorted, vecs)) && all(map(=(2)∘length, vecs))
+            # Case 2: 2d distribution, so it's ambiguous whether we have a lower and upper bound
             return _TMvNormal_ab(μ, Σ, map(first, vecs), map(last, vecs))
         elseif all(vecs[1] .<= vecs[2])
+            # Case 3: 2d distribution and it's unambiguous
             return _TMvNormal_ab(μ, Σ, vecs[1], vecs[2])
         end
     else
         error("TMvNormal: invalid arguments")
     end
-    end
-    
 end
 
 """
