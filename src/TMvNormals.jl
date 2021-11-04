@@ -64,7 +64,7 @@ function TMvNormal(μ::AbstractVector{Float64}, Σ::AbstractMatrix, vecs::Vararg
         # Case 1: Sequence of lower, upper bounds
         return _TMvNormal_ab(μ, Σ, vecs[1], vecs[2])
     elseif length(vecs) == 2
-        if all(map(issorted, vecs)) && all(map(=(2)∘length, vecs))
+        if all(map(issorted, vecs)) && all(map(==(2) ∘ length, vecs))
             # Case 2: 2d distribution, so it's ambiguous whether we have a lower and upper bound
             return _TMvNormal_ab(μ, Σ, map(first, vecs), map(last, vecs))
         elseif all(vecs[1] .<= vecs[2])
