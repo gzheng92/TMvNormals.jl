@@ -39,7 +39,7 @@ Base.broadcastable(d::TMvNormal) = Ref(d)
 """
 More convenient way to initialize the distribution with μ, Σ, a, and b
 """
-function TMvNormal(μ::AbstractVector, Σ::AbstractMatrix, a::AbstractVector, b::AbstractVector)
+function _TMvNormal_ab(μ::AbstractVector, Σ::AbstractMatrix, a::AbstractVector, b::AbstractVector)
     Σ = (Σ + Σ') / 2
     𝒩 = MvNormal(μ, Σ)
     a = ifelse.(
@@ -59,9 +59,20 @@ function TMvNormal(μ::AbstractVector, Σ::AbstractMatrix, a::AbstractVector, b:
 )
 end
 
-function TMvNormal(μ::AbstractVector{Float64}, Σ::AbstractMatrix, vecs::Vararg{AbstractVector,N}) where {N}
-    @assert length(μ) == length(vecs)
-    return TMvNormal(μ, Σ, map(first, vecs), map(last, vecs))
+function TMvNormal(μ::AbstractVector{Float64}, Σ::AbstractMatrix, vecs::Vararg{AbstractVector})
+    if length(μ) == length(vecs)
+        return _TMvNormal_ab(μ, Σ, vecs[1], vecs[2])
+    elseif length(vecs) == 2
+        if all(map(issorted, vecs)) && all(map(=(2)∘length, vecs))
+            return _TMvNormal_ab(μ, Σ, map(first, vecs), map(last, vecs))
+        elseif all(vecs[1] .<= vecs[2])
+            return _TMvNormal_ab(μ, Σ, vecs[1], vecs[2])
+        end
+    else
+        error("TMvNormal: invalid arguments")
+    end
+    end
+    
 end
 
 """
