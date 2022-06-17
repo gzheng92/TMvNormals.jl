@@ -36,7 +36,9 @@ cdf(d, zeros(3)) # evaluates the cdf
 mean(d)
 cov(d)
 
-# As in intermediary step, uses Genz (1992) algorithm to compute the CDF of a multivariate normal distribution
+# As in intermediary step, uses Genz (1992) algorithm
+# to compute the CDF of a multivariate normal distribution
+
 # the latent untruncated normal is contained in d.𝒩
 cdf(𝒩, zeros(3))
 ```
